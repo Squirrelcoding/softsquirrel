@@ -19,10 +19,9 @@ export default function MainText() {
       fontFamily: 'Poppins, sans-serif',
       fontSize: '75px'
     }} className="pt-24 pl-15 inline-block">
-      Developing  
       
       {/** Component that loops through "Developing X" */}
-      <TextLoop interval={2000}>
+      Developing  <TextLoop interval={2000}>
         <Text component="span" align="center" variant="gradient" gradient={{
           from: 'blue',
           to: 'violet',

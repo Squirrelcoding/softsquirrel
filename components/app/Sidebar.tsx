@@ -1,7 +1,7 @@
 /** import lots of dependencies */
 import { Navbar, Button, NavbarProps } from "@mantine/core";
 import Link from "next/link";
-import { AiFillHome, AiFillProject, AiOutlineTeam } from "react-icons/ai";
+import { AiFillHome, AiFillProject, AiOutlineTeam, AiFillGithub } from "react-icons/ai";
 import { MdContactMail } from "react-icons/md";
 import Image from "next/image";
 import { useUser } from "@auth0/nextjs-auth0"
@@ -118,6 +118,9 @@ export default function Sidebar(props: Omit<NavbarProps, 'children'>) {
                     }
                 </div>
             }
+            <a href="https://github.com/Squirrelcoding/softsquirrel" target="_blank" rel="noopener noreferrer">
+                <AiFillGithub size={25} className="bottom-0 fixed ml-2 mb-2 cursor-pointer"/>
+            </a>
         </Navbar>
     );
 }
