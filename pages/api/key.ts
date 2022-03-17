@@ -1,9 +1,10 @@
 /** Database key */
+const {privateKey} = JSON.parse(process.env.FIREBASE_KEY_PRIVATE_KEY ?? '{"privateKey": ""}');
 const key = {
     type: "service_account",
     project_id: process.env.FIREBASE_PROJECT_ID!,
     private_key_id: process.env.FIREBASE_KEY_PRIVATE_ID!,
-    private_key: process.env.FIREBASE_KEY_PRIVATE_KEY!.replace(/\\n/g, '\n'),
+    private_key: privateKey,
     client_email: process.env.FIREBASE_CLIENT_EMAIL!,
     client_id: process.env.FIREBASE_CLIENT_ID!,
     auth_uri: "https://accounts.google.com/o/oauth2/auth",
