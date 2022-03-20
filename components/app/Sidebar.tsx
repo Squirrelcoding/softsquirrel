@@ -5,8 +5,7 @@ import { AiFillHome, AiFillProject, AiOutlineTeam, AiFillGithub } from "react-ic
 import { MdContactMail } from "react-icons/md";
 import Image from "next/image";
 import { useUser } from "@auth0/nextjs-auth0"
-import { BiLogIn, BiNews } from "react-icons/bi";
-
+import { BiLogIn, BiNews, BiLayer } from "react-icons/bi";
 
 export default function Sidebar(props: Omit<NavbarProps, 'children'>) {
     /** User handler */
@@ -74,6 +73,16 @@ export default function Sidebar(props: Omit<NavbarProps, 'children'>) {
                 </Link>
             </Navbar.Section>
 
+
+            {/** Resources link */}
+            <Navbar.Section>
+                <Link href="/resources" passHref>
+                    <Button variant="subtle" color="gray" style={{ width: 180, marginTop: '10px', letterSpacing: "2px" }} leftIcon={<BiLayer size={14} />}>
+                        RESOURCES
+                    </Button>
+                </Link>
+            </Navbar.Section>
+
             {/** If the user handler is still loading, render loading... */}
             {isLoading &&
                 <p>loading...</p>
@@ -119,7 +128,7 @@ export default function Sidebar(props: Omit<NavbarProps, 'children'>) {
                 </div>
             }
             <a href="https://github.com/Squirrelcoding/softsquirrel" target="_blank" rel="noopener noreferrer">
-                <AiFillGithub size={25} className="bottom-0 fixed ml-2 mb-2 cursor-pointer"/>
+                <AiFillGithub size={25} className="bottom-0 fixed ml-2 mb-2 cursor-pointer" />
             </a>
         </Navbar>
     );

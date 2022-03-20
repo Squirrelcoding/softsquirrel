@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-/** 404 page component */
+/* 404 page component */
 export default function PageNotFound() {
     return <>
         <h1>

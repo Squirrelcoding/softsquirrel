@@ -23,13 +23,12 @@ const StyledLink = styled.a`
 const Post = () => {
   /** Get next/router handler and get the page ID, used to check if page is ready so that the data can be fetched */
   const router = useRouter()
-  const { id } = router.query;
-
+  const { id, type, back } = router.query;
   /** Fetch data with SWR from the CMS (really just a github repo) and 
    * return loading or error if an error is encountered 
    * data is the markdown content, a string 
    * */
-  const { data, error } = useSWR(id ? `https://raw.githubusercontent.com/Squirrelcoding/SoftsquirrelProps/main/blogposts/newposts/${id}.md` : null, fetcher);
+  const { data, error } = useSWR(id && type ? `https://raw.githubusercontent.com/Squirrelcoding/SoftsquirrelProps/main/blogposts/${type}/${id}.md` : null, fetcher);
   if (error) return <div>error: {JSON.stringify(error)}</div>
   if (!data) return <div>loading...</div>
 
@@ -74,9 +73,9 @@ const Post = () => {
         }}
       >{data}</ReactMarkdown>
       <br />
-      <Link href="/updates" passHref>
-        <StyledLink>See more posts</StyledLink>
-      </Link>
+        <Link href={`/${back}`}>
+            Back
+        </Link>
     </>
 
   )

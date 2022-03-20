@@ -67,7 +67,7 @@ export default function Posts(props: any) {
         {/** Loops through the sorted array of posts and displays the corresponding post */}
         {props.keys.map((key: any, i: any) => {
           return (
-            <Link key={i} href={`/post/${props.data[key].url}`} passHref>
+            <Link key={i} href={`/mdviewer/${props.data[key].url}?type=newposts&back=updates`} passHref>
               <Card style={{
                 minHeight: 200,
                 cursor: "pointer"

@@ -8,7 +8,6 @@ import { UserProvider } from '@auth0/nextjs-auth0';
 import Sidebar from '@components/app/Sidebar';
 import React from 'react';
 
-
 /** App function */
 function MyApp({ Component, pageProps }: AppProps) {
   return (

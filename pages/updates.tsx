@@ -24,7 +24,8 @@ export default function Blog({ data, keys }: any) {
     }
     return (
         <>
-        {/** Show posts in post component */}
+        {// Show posts in post component
+        }
           <Posts data={data} keys={keys}/>
         </>
     )
@@ -37,7 +38,7 @@ export default function Blog({ data, keys }: any) {
  */
 export async function getStaticProps() {
 
-    /** Initiate database handler */
+    // Initiate database handler
     const keyy = key as admin.ServiceAccount;
     if (admin.apps.length === 0) {
         admin.initializeApp({
@@ -47,16 +48,14 @@ export async function getStaticProps() {
     }
     const db = admin.firestore();
 
-    /** Get a reference to the document with post info and get the data in an object */
+    // Get a reference to the document with post info and get the data in an object
     const ref = db.collection("SoftsquirrelPosts").doc("newposts");
     const data = (await ref.get()).data()!;
 
-    /** This line of code takes the [time] (unix timestamp) property from each post, and sorts them from most recent to oldest */
+    // This line of code takes the [time] (unix timestamp) property from each post, and sorts them from most recent to oldest
     const keys: Array<string> = Object.keys(data).sort((a:any, b:any) => data[b].time - data[a].time);
 
-    /** 
-     * Returns the data with keys to sort them.
-     */
+    // Returns the data with keys to sort them.
     return {
         props: {
             data,
