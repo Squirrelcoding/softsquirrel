@@ -18,7 +18,7 @@ export default function Sidebar(props: Omit<NavbarProps, 'children'>) {
              * The first 2 are the logo and the company name
             */}
             <Navbar.Section>
-                <div className="flex items-center justify-center">
+                <div className="flex items-center justify-center left-0">
                     <Link href="/">
                         <a>
                             <Image src="/drawing.svg" alt="logo" width={30} height={30} priority />
@@ -119,7 +119,7 @@ export default function Sidebar(props: Omit<NavbarProps, 'children'>) {
                                 <Link href="/profile" passHref>
 
                                     <Button variant="subtle" color="gray" style={{ width: 180, marginTop: '10px', letterSpacing: "2px" }} leftIcon={<MdContactMail size={14} />}>
-                                        PROFILE
+                                        ACCOUNT
                                     </Button>
                                 </Link>
                             </Navbar.Section>

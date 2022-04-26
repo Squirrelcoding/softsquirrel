@@ -1,8 +1,7 @@
-import { ThoseThreeBoxes } from '@components/homepage/ThoseThreeBoxes';
-import MainText from '@components/homepage/MainText';
 import dynamic from 'next/dynamic';
-
 const Points = dynamic(() => import('@components/homepage/Points'))
+const ThoseThreeBoxes = dynamic(() => import('@components/homepage/ThoseThreeBoxes'))
+const MainText = dynamic(() => import('@components/homepage/MainText'))
 /**
  * This is the entry point of the website, with components each representing a part of the main page
  */
@@ -18,6 +17,10 @@ export default function App() {
       {/** More like a showcase of projects */}
       <Points />
       <br />
+      <br />
+      <br />
+
+
 
       {/** Selling points found right above the copyright */}
       <ThoseThreeBoxes />

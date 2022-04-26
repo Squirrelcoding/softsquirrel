@@ -2,7 +2,7 @@ import React from "react";
 import { Text, Card, Grid } from '@mantine/core';
 
 /** Even MORE selling points */
-export function ThoseThreeBoxes() {
+export default function ThoseThreeBoxes() {
   return (
     /** A grid to show the three boxes*/
     <Grid grow>

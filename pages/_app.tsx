@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
           {/** App shell component from Mantine */}
           <AppShell
-            fixed navbar={<Sidebar fixed width={{ base: 200 }} padding="xs" className="select-none" />}
+            fixed navbar={<Sidebar fixed width={{ base: 200 }} padding="xs" className="select-none"/>}
           >
 
             {/** Head thing */}
@@ -51,10 +51,8 @@ function MyApp({ Component, pageProps }: AppProps) {
               <meta name="author" content="Squirrelcoding" />
             </Head>
 
-            {/** Main component wrapped in div */}
-            <div className="ml-1 select-none">
-              <Component {...pageProps} />
-            </div>
+            {/** Main component */}
+              <Component {...pageProps} className="ml-1 select-none"/>
           </AppShell>
         </ParallaxProvider>
       </MantineProvider>

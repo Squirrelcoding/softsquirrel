@@ -9,6 +9,7 @@ const AntiRickRoll = dynamic(() => import('@components/projects/AntiRickRoll'))
 const OPSalmon = dynamic(() => import('@components/projects/OPSalmon'))
 const ScriptMacro = dynamic(() => import('@components/projects/ScriptMacro'))
 const Site = dynamic(() => import('@components/projects/Site'))
+const Temage = dynamic(() => import('@components/projects/Temage'))
 
 /** Project showcase page */
 const projects = () => {
@@ -39,6 +40,7 @@ const projects = () => {
           <BlockRacers />
 
           <Site />
+          <Temage />
 
       </SimpleGrid>
     </div>

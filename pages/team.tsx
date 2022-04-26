@@ -17,7 +17,7 @@ const team = () => {
             <h1 className="text-5xl">
                 The team
             </h1>
-
+            <p>This is the team responsible for delivering quality software</p>
             {/**
        * Each team card is wrapped in the SimpleGrid component so they can be arranged in a grid
        */}
