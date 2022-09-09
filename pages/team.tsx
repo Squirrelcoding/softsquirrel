@@ -7,6 +7,7 @@ const Systems = dynamic(() => import ('@components/team/Systems'))
 const Backend = dynamic(() => import ('@components/team/Backend'))
 const Frontend = dynamic(() => import ('@components/team/Frontend'))
 const Founder = dynamic(() => import ('@components/team/Founder'))
+const Mathmetician = dynamic(() => import ('@components/team/Mathmetician'))
 
 /**
  * Page for team member showcase
@@ -27,6 +28,7 @@ const team = () => {
                 <Backend/>
                 <Systems/>
                 <Joe/>
+                <Mathmetician/>
             </SimpleGrid>
         </div>
     );

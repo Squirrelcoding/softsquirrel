@@ -19,7 +19,7 @@ export default function MainText() {
       fontFamily: 'Poppins, sans-serif',
       fontSize: '75px'
     }} className="pt-24 pl-15 inline-block">
-      
+
       {/** Component that loops through "Developing X" */}
       Developing  <TextLoop interval={2000}>
         <Text component="span" align="center" variant="gradient" gradient={{
@@ -50,8 +50,42 @@ export default function MainText() {
           fontFamily: 'Poppins, sans-serif',
           fontSize: '75px'
         }}>
-          minecraft plugins
+          Minecraft plugins
         </Text>
+
+        <Text component="span" align="center" variant="gradient" gradient={{
+          from: 'blue',
+          to: 'violet',
+          deg: 500
+        }} weight={700} style={{
+          fontFamily: 'Poppins, sans-serif',
+          fontSize: '75px'
+        }}>
+          real-world solutions
+        </Text>
+
+        <Text component="span" align="center" variant="gradient" gradient={{
+          from: 'blue',
+          to: 'violet',
+          deg: 500
+        }} weight={700} style={{
+          fontFamily: 'Poppins, sans-serif',
+          fontSize: '75px'
+        }}>
+          server software
+        </Text>
+
+        <Text component="span" align="center" variant="gradient" gradient={{
+          from: 'blue',
+          to: 'violet',
+          deg: 500
+        }} weight={700} style={{
+          fontFamily: 'Poppins, sans-serif',
+          fontSize: '75px'
+        }}>
+          applications
+        </Text>
+
         <Text component="span" align="center" variant="gradient" gradient={{
           from: 'blue',
           to: 'violet',
@@ -62,6 +96,7 @@ export default function MainText() {
         }}>
           the future
         </Text>
+
       </TextLoop>{" "}
     </Text>
     <br />

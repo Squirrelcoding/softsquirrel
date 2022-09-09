@@ -3,7 +3,7 @@ import React from "react";
 import { AiFillGithub } from "react-icons/ai";
 
 /** Component for showing this project. Used in pages/projects.tsx */
-export default function Temage({ }) {
+export default function Temage() {
   return <Card shadow="sm" padding="xl" >
     <Card.Section>
       <h1 className="ml-5">Temage</h1>

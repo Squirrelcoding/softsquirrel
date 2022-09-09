@@ -34,15 +34,15 @@ export default function Points() {
     <br />
     <Parallax speed={-10}>
       <div className="absolute right-0 mr-10">
-        <Image src="/macro.jpg" alt="placeholder" width={480} height={270} />
+        <Image src="/bunnny.png" alt="placeholder" width={480} height={270} className="rounded"/>
       </div>
     </Parallax>
     <div className="ml-10">
-      <h1 className="text-5xl">ScriptMacro</h1>
+      <h1 className="text-5xl">PNGme implementation</h1>
       <p style={{
         wordWrap: "break-word",
         width: 600
-      }}>This is our latest project that is not this website. ScriptMacro is a CLI tool for Linux that makes running entire scripts throughout your OS a breeze! Just add the name and path to the list and you&apos;re done!</p>
+      }}>Ever dreamed of being able to communicate plans for crimes in cute bunny pictures? Well, we recently developed a program that does just this, <i>and</i> it&apos;s easy to use! Just enter the file name, a 4 letter ID, and the payload! What if I told you the cool bunny on the right had some criminal plan hidden in it with the chunk code &quot;test&quot;?</p>
     </div>
     <br />
     <br />

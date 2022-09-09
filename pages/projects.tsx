@@ -10,12 +10,14 @@ const OPSalmon = dynamic(() => import('@components/projects/OPSalmon'))
 const ScriptMacro = dynamic(() => import('@components/projects/ScriptMacro'))
 const Site = dynamic(() => import('@components/projects/Site'))
 const Temage = dynamic(() => import('@components/projects/Temage'))
+const PNGme = dynamic(() => import('@components/projects/PNGme'))
+const CHIP8 = dynamic(() => import('@components/projects/CHIP8'))
 
 /** Project showcase page */
 const projects = () => {
   return (
     <div>
-      <h1 className="text-5xl">
+      <h1 className="text-6xl">
         Softsquirrel projects
       </h1>
       <h3>
@@ -41,6 +43,8 @@ const projects = () => {
 
           <Site />
           <Temage />
+          <PNGme />
+          <CHIP8 />
 
       </SimpleGrid>
     </div>
