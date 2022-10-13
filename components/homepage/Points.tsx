@@ -18,15 +18,15 @@ export default function Points() {
     <br />
     <br />
     <div className="absolute right-0 mr-10">
-      <h1 className="text-5xl">Pro Poop+</h1>
+      <h1 className="text-5xl">Mathematics</h1>
       <p style={{
         wordWrap: "break-word",
         width: 600
-      }}>Pro Poop+ is an exclusive website for exclusive fans of the american youtube channel known as Pro Poop. He creates Minecraft and miscallaneous content. However upon realizing that one needs at least 1000 subscribers to make a youtube membership, he contacted Softsquirrel Studios and we took things into our own hands.</p>
+      }}>Softsquirrel Studios consists of the most elite scientists in todays world. Together, they have developed the most efficient software known to man. They have published papers that make major breakthroughs in the realm of Mathematics and Computer Science, saving millions of lives in the process.</p>
     </div>
     <Parallax speed={10}>
       <div className="ml-10">
-        <Image src="/a.jpg" alt="placeholder" width={480} height={270} />
+        <Image src="/math.svg" alt="placeholder" width={427} height={360} />
       </div>
     </Parallax>
     <br />

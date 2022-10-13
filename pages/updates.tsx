@@ -1,7 +1,6 @@
-import admin from 'firebase-admin';
 import dynamic from 'next/dynamic';
-import { key } from '../pages/api/key';
 import { useUser } from '@auth0/nextjs-auth0';
+import { getDbHandler } from 'lib/helper';
 
 /** Lazy load post components */
 const Posts = dynamic(() => import('@components/updates/Posts'));
@@ -39,21 +38,14 @@ export default function Blog({ data, keys }: any) {
 export async function getStaticProps() {
 
     // Initiate database handler
-    const keyy = key as admin.ServiceAccount;
-    if (admin.apps.length === 0) {
-        admin.initializeApp({
-            credential: admin.credential.cert(keyy),
-            databaseURL: "https://poopnet-4fb22.firebaseio.com"
-        });
-    }
-    const db = admin.firestore();
+    const db = getDbHandler();
 
     // Get a reference to the document with post info and get the data in an object
     const ref = db.collection("SoftsquirrelPosts").doc("newposts");
     const data = (await ref.get()).data()!;
 
     // This line of code takes the [time] (unix timestamp) property from each post, and sorts them from most recent to oldest
-    const keys: Array<string> = Object.keys(data).sort((a:any, b:any) => data[b].time - data[a].time);
+    const keys: string[] = Object.keys(data).sort((a:any, b:any) => data[b].time - data[a].time);
 
     // Returns the data with keys to sort them.
     return {

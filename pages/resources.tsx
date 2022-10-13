@@ -1,8 +1,19 @@
 import { SimpleGrid } from "@mantine/core";
-import admin from 'firebase-admin';
-import { key } from '../pages/api/key';
+import {
+    postSort,
+    getDoc,
+    paperLinkConverter,
+    postLinkConverter,
+    paperSort
+} from "lib/helper";
+import { PaperLink, PaperType, PostLink } from "lib/types";
 import Link from "next/link";
-const resources = ({ docPostData, docPostKeys, tutorialPostsData, tutorialPostKeys }: any) => {
+
+const resources = ({ docsData, tutorialsData, papersData }: {
+    docsData: PostLink[],
+    tutorialsData: PostLink[],
+    papersData: PaperLink[]
+}) => {
 
     return (
         <>
@@ -11,34 +22,91 @@ const resources = ({ docPostData, docPostKeys, tutorialPostsData, tutorialPostKe
             <div className="m-4 p-8">
                 <div className="inline-block p-4 align-middle">
                     <h2>Documentation</h2>
-                    <SimpleGrid cols={1} >
-                        {docPostKeys.map((val: any, key: any) => 
-                                <Link href={`/mdviewer/${docPostData[val].url}?type=docs&back=resources`} key={key}>
-                                    {docPostData[val].title}
-                                </Link>
-                            
-                            )}
-                    </SimpleGrid>
+                    <SimpleGrid cols={1}>
+                        {
+
+                            docsData.map(postLink => {
+                                return <Link key={
+                                    postLink.time
+                                }
+                                    href={
+                                        `/mdviewer/${postLink.slug
+                                        }?type=docs&back=resources`
+                                    }>
+                                    {
+                                        postLink.title
+                                    }</Link>
+                            })
+
+                        } </SimpleGrid>
                 </div>
 
-                <div className="inline-block p-4 align-middle ml-96">
+                { <div className="inline-block p-4 align-middle ml-96">
                     <h2>Tutorials</h2>
-                    <SimpleGrid cols={1} >
-                        {tutorialPostKeys.map((val: any, key: any) => {
-                            return (
-                                <Link key={key} href={`/mdviewer/${tutorialPostsData[val].url}?type=tutorials&back=resources`}>{tutorialPostsData[val].title}</Link>
-                            )
-                        })}
-                    </SimpleGrid>
+                    <SimpleGrid cols={1}>
+                        {
+                        tutorialsData.map(postLink => {
+                            return <Link key={
+                                postLink.time
+                            }
+                                href={
+                                    `/mdviewer/${postLink.slug
+                                    }?type=tutorials&back=resources`
+                                }>
+                                {
+                                    postLink.title
+                                }</Link>
+                        })
+                    } </SimpleGrid>
+                </div> } 
                 </div>
-            </div>
 
-        </>
+            { <div className="m-4 p-8">
+                <div className="inline-block p-4 align-middle">
+                    <h2>Papers - University of Softsquirrel</h2>
+
+                    <h3>Mathematics</h3>
+                    <SimpleGrid cols={1}>
+                        {
+
+                            papersData.filter(paper => paper.type === PaperType.Mathematics).map(paperLink => {
+
+                                return <Link key={
+                                    paperLink.time
+                                }
+                                    href={
+                                        `/papers/${paperLink.slug
+                                        }.pdf`
+                                    }>
+                                    {`${paperLink.title}`}</Link>
+                            })
+                        }
+                         </SimpleGrid>
+
+                        <h3>Computer Science</h3>
+                        <SimpleGrid cols={1}>
+                        {
+
+
+                            papersData.filter(paper => paper.type === PaperType.ComputerScience).map(paperLink => {
+
+                                return <Link key={
+                                    paperLink.time
+                                }
+                                    href={
+                                        `/papers/${paperLink.slug
+                                        }.pdf`
+                                    }>
+                                    {`${paperLink.title}`}</Link>
+                            })
+                        }
+                         </SimpleGrid>
+                </div>
+            </div> } </>
     );
-}
+};
 
 export default resources;
-
 
 /**
  * Function to get post data from the database
@@ -46,34 +114,25 @@ export default resources;
  * @returns {Promise<{props:{data: admin.firestore.DocumentData;keys: string[];};revalidate: number;}>} Post data with keys
  */
 export async function getStaticProps() {
-
     // Initiate database handler
-    const keyy = key as admin.ServiceAccount;
-    if (admin.apps.length === 0) {
-        admin.initializeApp({
-            credential: admin.credential.cert(keyy),
-            databaseURL: "https://poopnet-4fb22.firebaseio.com"
-        });
-    }
-    const db = admin.firestore();
 
-    // Get a reference to the documents with post info and get the data in an object
-    const ref = db.collection("SoftsquirrelPosts").doc("docs");
-    const docPostData = (await ref.get()).data() ?? {};
+    // Get the data for each type of post
 
-    const tutorialPostsRef = db.collection("SoftsquirrelPosts").doc("tutorials");
-    const tutorialPostsData = (await tutorialPostsRef.get()).data() ?? {};
-    // This line of code takes the [time] (unix timestamp) property from each post, and sorts them from most recent to oldest
-    const docPostKeys: Array<string> = Object.keys(docPostData).sort((a: any, b: any) => docPostData[b].time - docPostData[a].time);
-    const tutorialPostKeys: Array<string> = Object.keys(tutorialPostsData).sort((a: any, b: any) => tutorialPostsData[b].time - tutorialPostsData[a].time);
-    // Returns the data with keys to sort them.
+    const docsData = await getDoc("SoftsquirrelPosts", "docs", postLinkConverter);
+    const tutorialsData = await getDoc("SoftsquirrelPosts", "tutorials", postLinkConverter);
+    const papersData = await getDoc("SoftsquirrelPosts", "papers", paperLinkConverter);
+
+
+    docsData.sort(postSort);
+    tutorialsData.sort(postSort);
+    papersData.sort(paperSort);
+
     return {
         props: {
-            docPostData,
-            docPostKeys,
-            tutorialPostsData,
-            tutorialPostKeys
+            docsData,
+            tutorialsData,
+            papersData
         },
-        revalidate: 120,
-    }
+        revalidate: 120
+    };
 }
