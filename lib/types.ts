@@ -11,8 +11,23 @@ export interface PaperLink {
     type: PaperType;
 }
 
+export interface ProjectType {
+    time: string;
+    title: string;
+    description: string;
+    isNew: boolean;
+    isMaintained: boolean;
+    thumbnailLink: string;
+
+    thumbnailWidth: number;
+    thumbnailHeight: number;
+
+    github?: string;
+    directLink?: string;
+}
+
 export enum PaperType {
     Mathematics = "Mathematics",
-    ComputerScience = "Computer Science",
+    CS = "Computer Science",
     Other = "Other",
 }

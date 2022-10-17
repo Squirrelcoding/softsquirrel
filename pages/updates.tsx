@@ -1,21 +1,21 @@
 import dynamic from 'next/dynamic';
 import { useUser } from '@auth0/nextjs-auth0';
-import { getDbHandler } from 'lib/helper';
+import { getDoc, postLinkConverter, postSort } from 'lib/helper';
+import { PostLink } from 'lib/types';
 
-/** Lazy load post components */
+// Lazy load post components
 const Posts = dynamic(() => import('@components/updates/Posts'));
 
 /** 
  * Posts page component
  */
-export default function Blog({ data, keys }: any) {
+export default function Blog({ data }: { data: PostLink[] }) {
 
     /** Get user handler */
     const { user } = useUser();
 
-   /**
-    * If the user isnt logged in, tell user to log in
-    */
+
+   // If the user isnt logged in, tell user to log in
     if (!user) {
         return <p>
             The blog is only available to users with accounts, create one for free by clicking <i>Log in</i> on the right!
@@ -23,9 +23,7 @@ export default function Blog({ data, keys }: any) {
     }
     return (
         <>
-        {// Show posts in post component
-        }
-          <Posts data={data} keys={keys}/>
+          <Posts props={data}/>
         </>
     )
 }
@@ -37,21 +35,13 @@ export default function Blog({ data, keys }: any) {
  */
 export async function getStaticProps() {
 
-    // Initiate database handler
-    const db = getDbHandler();
-
-    // Get a reference to the document with post info and get the data in an object
-    const ref = db.collection("SoftsquirrelPosts").doc("newposts");
-    const data = (await ref.get()).data()!;
-
-    // This line of code takes the [time] (unix timestamp) property from each post, and sorts them from most recent to oldest
-    const keys: string[] = Object.keys(data).sort((a:any, b:any) => data[b].time - data[a].time);
+    // Get series of post links in an array
+    const data: PostLink[] = (await getDoc("SoftsquirrelPosts", "newposts", postLinkConverter)).sort(postSort);
 
     // Returns the data with keys to sort them.
     return {
         props: {
             data,
-            keys
         },
         revalidate: 120,
     }

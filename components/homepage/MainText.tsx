@@ -1,10 +1,15 @@
 import React from "react";
 import { Text } from '@mantine/core';
-import TextLoop from "react-text-loop";
+import { TextLoop } from "react-text-loop-next";
 import { Parallax } from 'react-scroll-parallax';
 import Image from 'next/image';
+import { useSpring, animated } from "react-spring";
 
 export default function MainText() {
+
+  const props = useSpring({ to: { marginRight: 140 }, from: { marginRight: -300 } })
+
+
   return <>
 
     {/** Text displaying "Developing X" 
@@ -16,7 +21,6 @@ export default function MainText() {
       to: 'violet',
       deg: 300
     }} weight={700} style={{
-      fontFamily: 'Poppins, sans-serif',
       fontSize: '75px'
     }} className="pt-24 pl-15 inline-block">
 
@@ -27,7 +31,6 @@ export default function MainText() {
           to: 'violet',
           deg: 500
         }} weight={700} style={{
-          fontFamily: 'Poppins, sans-serif',
           fontSize: '75px'
         }}>
           websites
@@ -37,7 +40,6 @@ export default function MainText() {
           to: 'violet',
           deg: 500
         }} weight={700} style={{
-          fontFamily: 'Poppins, sans-serif',
           fontSize: '75px'
         }}>
           CLI tools
@@ -47,7 +49,6 @@ export default function MainText() {
           to: 'violet',
           deg: 500
         }} weight={700} style={{
-          fontFamily: 'Poppins, sans-serif',
           fontSize: '75px'
         }}>
           Minecraft plugins
@@ -58,7 +59,6 @@ export default function MainText() {
           to: 'violet',
           deg: 500
         }} weight={700} style={{
-          fontFamily: 'Poppins, sans-serif',
           fontSize: '75px'
         }}>
           real-world solutions
@@ -69,7 +69,6 @@ export default function MainText() {
           to: 'violet',
           deg: 500
         }} weight={700} style={{
-          fontFamily: 'Poppins, sans-serif',
           fontSize: '75px'
         }}>
           server software
@@ -80,7 +79,6 @@ export default function MainText() {
           to: 'violet',
           deg: 500
         }} weight={700} style={{
-          fontFamily: 'Poppins, sans-serif',
           fontSize: '75px'
         }}>
           applications
@@ -91,7 +89,6 @@ export default function MainText() {
           to: 'violet',
           deg: 500
         }} weight={700} style={{
-          fontFamily: 'Poppins, sans-serif',
           fontSize: '75px'
         }}>
           the future
@@ -100,9 +97,14 @@ export default function MainText() {
       </TextLoop>{" "}
     </Text>
     <br />
+    <animated.div style={props}>
     <Parallax speed={-10}>
-      <div className="absolute right-0 mr-40">
-        <Image src="/drawing.svg" alt="placeholder" width={350} height={350} priority />
+      <div className="absolute right-0">
+        <Image src="/ss_logo.svg" alt="placeholder" width={350} height={350} priority />
       </div>
-    </Parallax></>;
+    </Parallax>
+    </animated.div>
+
+
+  </>
 }

@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import {SimpleGrid} from '@mantine/core';
 
-/** lazy load all of the components */
+// lazy load all of the components
 const Joe = dynamic(() => import ('@components/team/Joe'))
 const Systems = dynamic(() => import ('@components/team/Systems'))
 const Backend = dynamic(() => import ('@components/team/Backend'))
@@ -15,13 +15,11 @@ const Mathmetician = dynamic(() => import ('@components/team/Mathmetician'))
 const team = () => {
     return (
         <div>
-            <h1 className="text-5xl">
+            <p className="text-5xl font-medium">
                 The team
-            </h1>
+            </p>
             <p>This is the team responsible for delivering quality software</p>
-            {/**
-       * Each team card is wrapped in the SimpleGrid component so they can be arranged in a grid
-       */}
+            {/*Each team card is wrapped in the SimpleGrid component so they can be arranged in a grid*/}
             <SimpleGrid cols={3}>
                 <Founder/>
                 <Frontend/>

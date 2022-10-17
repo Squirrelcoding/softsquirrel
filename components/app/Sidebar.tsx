@@ -21,7 +21,7 @@ export default function Sidebar(props: Omit<NavbarProps, 'children'>) {
                 <div className="flex items-center justify-center left-0">
                     <Link href="/">
                         <a>
-                            <Image src="/drawing.svg" alt="logo" width={30} height={30} priority />
+                            <Image src="/ss_logo.svg" alt="logo" width={30} height={30} priority />
                         </a>
                     </Link>
                 </div>

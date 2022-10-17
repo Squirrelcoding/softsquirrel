@@ -4,15 +4,12 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import styled from 'styled-components';
 import useSWR from 'swr';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import style from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark-plus';
 
 // SWR fetcher
-const fetcher = (...args: any) => fetch(args).then(async res => {
-  return await res.text()
-});
+const fetcher = (...args: any) => fetch(args).then(async res => await res.text());
 
 
 const Post = () => {

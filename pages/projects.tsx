@@ -1,54 +1,74 @@
-import dynamic from 'next/dynamic';
-import {SimpleGrid} from "@mantine/core";
+import Project from "@components/Project";
+import { Button, Center } from "@mantine/core";
+import { useState } from "react";
+import { ProjectType } from "../lib/types";
+import { GetStaticProps } from 'next';
+import { getDoc, projectConverter } from "lib/helper";
+
+import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
+import { useSpring } from "react-spring";
 
 
-/** lazy load all of the components */
-const PPP = dynamic(() => import('@components/projects/PPP'))
-const BlockRacers = dynamic(() => import('@components/projects/BlockRacers'))
-const AntiRickRoll = dynamic(() => import('@components/projects/AntiRickRoll'))
-const OPSalmon = dynamic(() => import('@components/projects/OPSalmon'))
-const ScriptMacro = dynamic(() => import('@components/projects/ScriptMacro'))
-const Site = dynamic(() => import('@components/projects/Site'))
-const Temage = dynamic(() => import('@components/projects/Temage'))
-const PNGme = dynamic(() => import('@components/projects/PNGme'))
-const CHIP8 = dynamic(() => import('@components/projects/CHIP8'))
 
-/** Project showcase page */
-const projects = () => {
-  return (
-    <div>
-      <h1 className="text-6xl">
-        Softsquirrel projects
-      </h1>
-      <h3>
-        These are our favorite projects, for other projects visit the <a href="https://github.com/Squirrelcoding?tab=repositories" style={{
-          color: "#428af5"
-        }}>github</a>
-      </h3>
-      <br />
 
-      {/**
-       * Each project card is wrapped in the SimpleGrid component so they can be arranged in a grid
-       */}
-      <SimpleGrid cols={3}>
-          <PPP/>
+const Test = ({ data }: { data: ProjectType[] }) => {
 
-          <ScriptMacro />
+    let [projectIndex, setProjectIndex] = useState(1);
 
-          <OPSalmon />
+    // React spring thingy
+    const [styles, api] = useSpring(() => ({
+            marginRight: 40
+    }));
+    api.start({ marginRight: 40 });
 
-          <AntiRickRoll />
+    return (
+        <div>
+            <Project info={data[projectIndex - 1]} styles={styles} />
+            <br />
+            <br />
+            <br />
+            <br />
+            <Center>
+                <Button onClick={() => {
 
-          <BlockRacers />
+                    if (projectIndex === 1) return;
 
-          <Site />
-          <Temage />
-          <PNGme />
-          <CHIP8 />
+                    // Start the slide-in animation
+                    api.start({ from: {
+                        marginRight: -300
+                    } });
 
-      </SimpleGrid>
-    </div>
-  );
+                    setProjectIndex(--projectIndex);
+                }}><BiLeftArrow /></Button>
+
+                
+                <Button onClick={() => {
+                    if (projectIndex === data.length) return;
+
+                    // Start the slide-in animation
+                    api.start({ from: {
+                        marginRight: -300
+                    } });
+
+                    setProjectIndex(++projectIndex);
+                }}><BiRightArrow /></Button>
+
+            </Center>
+        </div>
+    );
 }
 
-export default projects;
+export default Test;
+
+
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
+
+    const data = await getDoc("SoftsquirrelPosts", "projects", projectConverter);
+
+    return {
+        props: {
+            data
+        }
+    }
+}

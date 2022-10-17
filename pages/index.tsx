@@ -20,8 +20,6 @@ export default function App() {
       <br />
       <br />
 
-
-
       {/** Selling points found right above the copyright */}
       <ThoseThreeBoxes />
       <br />

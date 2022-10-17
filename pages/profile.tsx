@@ -10,14 +10,14 @@ const StyledLink = styled.a`
  */
 export default function Profile() {
 
-  /** Get user api utils */
+  // Get user api utils
   const { user, error, isLoading } = useUser();
 
-  /** Indicate if the server is still trying to return a user or if it failed to do so */
+  // Indicate if the server is still trying to return a user or if it failed to do so 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error.message}</div>;
 
-  /** Renders if user found successfully */
+  // Renders if user found successfully
   if (user) {
     return (
       <div>
@@ -33,6 +33,6 @@ export default function Profile() {
     );
   }
 
-  /** If the user object is null (user session not found, not logged in) */
+  // If the user object is null (user session not found, not logged in)
   return <Link href="/api/auth/login">Login</Link>;
 }

@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
             {/** Head thing */}
             <Head>
-              <link rel="shortcut icon" href="/icon.ico" />
+              <link rel="shortcut icon" href="/favicon.ico" />
               <title>Softsquirrel</title>
               <meta name="keywords" content="Softsquirrel, Pro Poop, Cool" />
               <meta name="description" content="A very cool company" />
